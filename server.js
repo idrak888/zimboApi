@@ -75,6 +75,21 @@ app.post('/users', (req, res) => {
     });
 });
 
+app.post('/users/login', (req, res) => {
+	var body = _.pick(req.body, ['email', 'password']);
+
+	user.findOne({email:body.email}).then(User => {
+		if (User.password === body.password) {
+			var token = User.generateAuthToken();
+			res.header('x-auth', token).send(User.email);
+		}else {
+			res.status(401).send('Wrong password or email.');
+		}
+	}).catch(e => {
+		res.status(400).send("Email not signed up");
+	});	
+});
+
 app.get('/users', (req, res) => {
     user.find().then((users) => {
         res.send(users);
