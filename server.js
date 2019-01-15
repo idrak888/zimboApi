@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 });
 
 var authenticate = (req, res, next) => {
-	var token = req.header('X-Auth');
+	var token = req.header('X-Auth') || req.body.token;
 
 	user.findByToken(token).then((user) => {
 		req.user = user;
