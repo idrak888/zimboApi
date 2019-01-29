@@ -69,23 +69,22 @@ app.post('/videos', authenticate, (req, res) => {
 	collectionName: body.collectionName,
         _creator: req.user._id
     });
+    if (newVideo.collection == '') {
 	newVideo.save().then((doc) => {
 		res.send(doc);
 	}).catch(e => {
 		res.send(e);
 	});
-//     if (newVideo.collection == '') {
-	
-//     }else {
-// 	 collection.find({name:newVideo.collection}).then(collection => {
-// 		collection.videos.push(newVideo);	 
-// 	 });
-// 	 collection.save().then((doc) => {
-// 	 	res.send(doc);
-// 	 }).catch(e => {
-// 	 	res.send(e);
-// 	 });
-//     }  
+    }else {
+	 collection.find({name:newVideo.collection}).then(collection => {
+		collection.videos.push(newVideo);	 
+	 });
+	 collection.save().then((doc) => {
+	 	res.send(doc);
+	 }).catch(e => {
+	 	res.send(e);
+	 });
+    }  
 });
 
 app.delete('/videos', authenticate, (req, res) => {
