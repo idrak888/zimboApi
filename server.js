@@ -69,13 +69,13 @@ app.post('/videos', authenticate, (req, res) => {
 	collection: body.collection,
         _creator: req.user._id
     });
-    if (newVideo.collection == '') {
 	newVideo.save().then((doc) => {
 		res.send(doc);
 	}).catch(e => {
 		res.send(e);
 	});
-     }
+//     if (newVideo.collection == '') {
+	
 //     }else {
 // 	 collection.find({name:newVideo.collection}).then(collection => {
 // 		collection.videos.push(newVideo);	 
