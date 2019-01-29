@@ -61,12 +61,12 @@ app.post('/collections', authenticate, (req, res) => {
 });
 
 app.post('/videos', authenticate, (req, res) => {
-    var body = _.pick(req.body, ['title', 'des', 'link']);
+    var body = _.pick(req.body, ['title', 'des', 'link', 'collectionName']);
     var newVideo = new video({
         title: body.title,
         des: body.des,
         link: body.link,
-	collection: body.collection,
+	collectionName: body.collectionName,
         _creator: req.user._id
     });
 	newVideo.save().then((doc) => {
