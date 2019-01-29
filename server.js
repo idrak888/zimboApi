@@ -82,6 +82,12 @@ app.post('/videos', authenticate, (req, res) => {
     }  
 });
 
+app.delete('/collections', authenticate, (req, res) => {
+    collection.find().remove().then(result => {
+	    res.send(result);
+    });
+});
+
 app.delete('/videos', authenticate, (req, res) => {
     video.findOneAndRemove({_creator:req.user._id}).then(video => {
         res.send(video);
