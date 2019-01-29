@@ -34,8 +34,8 @@ var authenticate = (req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.get('/collections', (req, res) => {
-	collection.find().then(collection => {
+app.get('/collections', authenticate, (req, res) => {
+	collection.find({_creator:req.user._id}).then(collection => {
 		res.send(collection);	
 	});
 });
@@ -44,6 +44,22 @@ app.get('/videos', authenticate, (req, res) => {
     video.find({_creator:req.user._id}).then(videos => {
         res.send(videos);
     });
+});
+
+app.post('/collections', authenticate, (req, res) => {
+	var body = _.pick(req.body, ['name', 'videos']);
+	var newCollection = new collection({
+		name: body.name,
+		videos: [
+			{title: body.videos.title, des: body.videos.des, link: body.videos.link}	
+		],
+		_creator: req.user._id
+	});
+	newCollection.save().then(doc => {
+		res.send(doc);
+	}).catch(e => {
+		res.send(e);	
+	});
 });
 
 app.post('/videos', authenticate, (req, res) => {
