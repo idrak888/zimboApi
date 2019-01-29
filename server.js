@@ -75,16 +75,17 @@ app.post('/videos', authenticate, (req, res) => {
 	}).catch(e => {
 		res.send(e);
 	});
-    }else {
-	 collection.find({name:newVideo.collection}).then(collection => {
-		collection.videos.push(newVideo);	 
-	 });
-	 collection.save().then((doc) => {
-	 	res.send(doc);
-	 }).catch(e => {
-	 	res.send(e);
-	 });
-    }  
+     }
+//     }else {
+// 	 collection.find({name:newVideo.collection}).then(collection => {
+// 		collection.videos.push(newVideo);	 
+// 	 });
+// 	 collection.save().then((doc) => {
+// 	 	res.send(doc);
+// 	 }).catch(e => {
+// 	 	res.send(e);
+// 	 });
+//     }  
 });
 
 app.delete('/videos', authenticate, (req, res) => {
