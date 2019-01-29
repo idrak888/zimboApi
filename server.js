@@ -5,6 +5,7 @@ const _ = require('lodash');
 const { mongoose } = require('./db/mongoose');
 const { video } = require('./db/video-model');
 const { user } = require('./db/user-model');
+const { collection } = require('./db/collection-model);
 
 var app = express();
 var port = process.env.PORT || 3100;
@@ -32,6 +33,12 @@ var authenticate = (req, res, next) => {
 };
 
 app.use(bodyParser.json());
+
+app.get((req, res) => {
+	collection.find().then(collection => {
+		res.send(collection);	
+	});
+});
 
 app.get('/videos', authenticate, (req, res) => {
     video.find({_creator:req.user._id}).then(videos => {
