@@ -13,6 +13,10 @@ var VideoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    collection: {
+    	type: String,
+	required: false
+    },	
     _creator: {
 		required: true,
 		type: mongoose.Schema.Types.ObjectId
