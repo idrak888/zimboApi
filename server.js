@@ -5,7 +5,7 @@ const _ = require('lodash');
 const { mongoose } = require('./db/mongoose');
 const { video } = require('./db/video-model');
 const { user } = require('./db/user-model');
-const { collection } = require('./db/collection-model);
+const { collection } = require('./db/collection-model');
 
 var app = express();
 var port = process.env.PORT || 3100;
