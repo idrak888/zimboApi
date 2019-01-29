@@ -34,7 +34,7 @@ var authenticate = (req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.get((req, res) => {
+app.get('/collections', (req, res) => {
 	collection.find().then(collection => {
 		res.send(collection);	
 	});
