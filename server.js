@@ -48,15 +48,9 @@ app.get('/videos', authenticate, (req, res) => {
 
 app.post('/collections', authenticate, (req, res) => {
 	var body = _.pick(req.body, ['name', 'videos']);
-	var newVideo = new video({
-		title: body.title,
-		des: body.des, 
-		link: body.link,
-		_creator: req.user._id
-	});
 	var newCollection = new collection({
 		name: body.name,
-		videos: [newVideo],
+		videos: [],
 		_creator: req.user._id
 	});
 	newCollection.save().then(doc => {
