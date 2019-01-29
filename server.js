@@ -77,7 +77,7 @@ app.post('/videos', authenticate, (req, res) => {
 	});
     }else {
 	 collection.find({name:newVideo.collectionName}).then(col => {
-		col.videos.push(newVideo);
+		res.send(col.videos);
 	 });
     }  
 });
