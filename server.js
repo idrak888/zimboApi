@@ -51,7 +51,7 @@ app.post('/collections', authenticate, (req, res) => {
 	var newCollection = new collection({
 		name: body.name,
 		videos: [
-			{title: body.videos.title, des: body.videos.des, link: body.videos.link}	
+			{title: body.videoTitle, des: body.videosDes, link: body.videosLink}	
 		],
 		_creator: req.user._id
 	});
