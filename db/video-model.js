@@ -13,7 +13,7 @@ var VideoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    collection: {
+    collectionName: {
     	type: String,
 	required: false
     },	
