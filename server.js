@@ -76,14 +76,7 @@ app.post('/videos', authenticate, (req, res) => {
 		res.send(e);
 	});
     }else {
-	 collection.find({name:newVideo.collectionName}).then(col => {
-		col.videos.push(newVideo);
-		col.save().then(doc => {
-			res.send(doc);	
-		}).catch(e => {
-			res.send(e);	
-		});
-	 });
+	 collection.findOneAndUpdate({name:newVideo.collectionName}, {$push: {videos: newVideo}});
     }  
 });
 
