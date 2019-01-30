@@ -76,7 +76,8 @@ app.post('/videos', authenticate, (req, res) => {
 		res.send(e);
 	});
     }else {
-	 collection.findOneAndUpdate({name:newVideo.collectionName}, {$push: {videos: newVideo}});
+	 collection.findOneAndUpdate({name:newVideo.collectionName}, 
+				     {$push: {videos: newVideo}}, done);
     }  
 });
 
