@@ -73,7 +73,7 @@ app.post('/videos', authenticate, (req, res) => {
 	newVideo.save().then((doc) => {
 		res.send(doc);
 	}).catch(e => {
-		res.send(e);]
+		res.send(e);
 	});
     }else {
 	 collection.find({name:newVideo.collectionName}).then(col => {
